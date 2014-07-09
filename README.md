@@ -1,5 +1,7 @@
 # DVD e-Commerce Website #
 
+## Description ##
+
 This is a demo e-commerce website written in Java, JSP and Servlet, and developed as an individual project and part of a university assignment.
 
 It features:
@@ -12,8 +14,8 @@ It features:
 - A [web service](http://www.ezzylearning.com/services/CreditCardValidationService.asmx) that checked a credit card number against the [Luhn algorithm](http://en.wikipedia.org/wiki/Luhn_algorithm).
 - An adjusted website [template](http://www.free-css.com/free-css-templates/page175/bigshot#shout) that uses CSS and HTML.
 
-* * *
 
+## Supporting Documentation ##
 
 See the [supporting document](https://bitbucket.org/sstanford/dvd-e-commerce-website/downloads/M30CDE%20Assignment%20-%20Simon%20Stanford.pdf) in the downloads section that provides:
 
