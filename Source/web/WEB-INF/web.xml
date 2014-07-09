@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <context-param>
+        <description>Database URL</description>
+        <param-name>DbUrl</param-name>
+        <param-value>jdbc:mysql://localhost:3306/m30cde_assignment?zeroDateTimeBehavior=convertToNull</param-value>
+    </context-param>
+    <context-param>
+        <param-name>DbUserName</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>DbPassword</param-name>
+        <param-value>mypassword</param-value>
+    </context-param>
+    <context-param>
+        <param-name>AesEncryptionKey</param-name>
+        <param-value>770A8A65DA156D24EE2A093277530142</param-value>
+    </context-param>
+    <welcome-file-list>
+        <welcome-file>loadAmazune</welcome-file>
+    </welcome-file-list>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/ErrorHandler</location>
+    </error-page>
+    <security-constraint>
+        <display-name>EnableSSL</display-name>
+        <web-resource-collection>
+            <web-resource-name>WebApp</web-resource-name>
+            <description/>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+        
+    </security-constraint>
+       <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config>
+    
+    <security-role>
+        <description/>
+        <role-name>loginAdmin</role-name>
+    </security-role>
+    
+     <security-constraint>
+        <display-name>Administrator</display-name>
+        <web-resource-collection>
+            <web-resource-name>Admin Constraint</web-resource-name>
+            <description/>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>loginAdmin</role-name>
+        </auth-constraint>
+    </security-constraint>
+</web-app>

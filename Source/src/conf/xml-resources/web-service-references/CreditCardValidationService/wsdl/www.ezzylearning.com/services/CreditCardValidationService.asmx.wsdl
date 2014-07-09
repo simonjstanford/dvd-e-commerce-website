@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.ezzylearning.com/services/CreditCardValidationService.asmx" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.ezzylearning.com/services/CreditCardValidationService.asmx" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.ezzylearning.com/services/CreditCardValidationService.asmx">
+      <s:element name="ValidateCreditCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cardNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateCreditCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidateCreditCardResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="boolean" type="s:boolean" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ValidateCreditCardSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateCreditCard" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCreditCardSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateCreditCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCreditCardHttpGetIn">
+    <wsdl:part name="cardNumber" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCreditCardHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCreditCardHttpPostIn">
+    <wsdl:part name="cardNumber" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCreditCardHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:portType name="CreditCardValidationServiceSoap">
+    <wsdl:operation name="ValidateCreditCard">
+      <wsdl:input message="tns:ValidateCreditCardSoapIn" />
+      <wsdl:output message="tns:ValidateCreditCardSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CreditCardValidationServiceHttpGet">
+    <wsdl:operation name="ValidateCreditCard">
+      <wsdl:input message="tns:ValidateCreditCardHttpGetIn" />
+      <wsdl:output message="tns:ValidateCreditCardHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CreditCardValidationServiceHttpPost">
+    <wsdl:operation name="ValidateCreditCard">
+      <wsdl:input message="tns:ValidateCreditCardHttpPostIn" />
+      <wsdl:output message="tns:ValidateCreditCardHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CreditCardValidationServiceSoap" type="tns:CreditCardValidationServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidateCreditCard">
+      <soap:operation soapAction="http://www.ezzylearning.com/services/CreditCardValidationService.asmx/ValidateCreditCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CreditCardValidationServiceSoap12" type="tns:CreditCardValidationServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidateCreditCard">
+      <soap12:operation soapAction="http://www.ezzylearning.com/services/CreditCardValidationService.asmx/ValidateCreditCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CreditCardValidationServiceHttpGet" type="tns:CreditCardValidationServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ValidateCreditCard">
+      <http:operation location="/ValidateCreditCard" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CreditCardValidationServiceHttpPost" type="tns:CreditCardValidationServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ValidateCreditCard">
+      <http:operation location="/ValidateCreditCard" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CreditCardValidationService">
+    <wsdl:port name="CreditCardValidationServiceSoap" binding="tns:CreditCardValidationServiceSoap">
+      <soap:address location="http://www.ezzylearning.com/services/CreditCardValidationService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CreditCardValidationServiceSoap12" binding="tns:CreditCardValidationServiceSoap12">
+      <soap12:address location="http://www.ezzylearning.com/services/CreditCardValidationService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CreditCardValidationServiceHttpGet" binding="tns:CreditCardValidationServiceHttpGet">
+      <http:address location="http://www.ezzylearning.com/services/CreditCardValidationService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CreditCardValidationServiceHttpPost" binding="tns:CreditCardValidationServiceHttpPost">
+      <http:address location="http://www.ezzylearning.com/services/CreditCardValidationService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
